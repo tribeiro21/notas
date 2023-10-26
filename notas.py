@@ -14,6 +14,16 @@ cursor.execute("""
         PRIMARY KEY('id' AUTOINCREMENT)
     );
 """)
+#Sobre el cursor ejecuto una petición para crear una tabla de usuarios si no existe
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS 'usuarios'(
+        'id' INTEGER,
+        'usuario' TEXT,
+        'password' TEXT,
+        'email' TEXT,
+        PRIMARY KEY('id' AUTOINCREMENT)
+    );
+""")
 
 #Saludo inicial
 print("Soy Tony Ribeiro")                                                   #Autor
@@ -25,15 +35,15 @@ class Nota:                                                                 #Dec
         self.color = color                                                  #Propiedad color
         self.fecha = fecha                                                  #Propiedad fecha
 
-nota = "Este es mi primer programa"                                         #Valor inicial de la variable
+usuario = "Este es mi primer programa"                                         #Valor inicial de la variable
 notas = []                                                                  #Creamos una lista vacía
 
-print("Evalúa la calidad de mi primer programa del 1 al 10")                #Pido la evaluación del usuario
-nota = input()                                                              #Introduce la puntuación
-print("La puntuación que me has dado es: "+nota)                            #Mensaje final
+print("Introduce el usuario")                                               #Pido la evaluación del usuario
+usuario = input()                                                              #Introduce la puntuación
+print("El usuario es: "+usuario)                                            #Mensaje final
 
 for i in range(0,10):                                                       #Permito al usuario varios comentarios                              
-    print("Escribe una segunda recomendación que le harías a mi programa")  #Le pido un segundo comentario
+    print("Escribe una recomendación que le harías a mi programa")  #Le pido un segundo comentario
     entrada = input()                                                       #Capturo la entrada del usuario
     print("Introduce el color del comentario")                              #Le pido el color al usuario
     color = input()                                                         #Capturo el color
@@ -50,3 +60,5 @@ for i in notas:                                                             #Par
     print(i.texto)                                                          #Imprimo el comentario
     print(i.color)                                                          #Imprimo el color
     print(i.fecha)                                                          #Imprimo la fecha
+    cursor.execute("INSERT INTO comentarios VALUES(NULL,'"+i.texto+"','"+i.color+"','"+i.fecha+"');")#Inserto uno a una las notas en la base de datos
+    conexion.commit()                                                       #Ejecuto la inserción
