@@ -1,5 +1,8 @@
 #Programa Básico (c) 2023 Tony Ribeiro
 
+import sqlite3 as db                                                        #Importo la librería de sqlite
+
+conexion = db.connect("comentarios.sqlite")                                 #Indico el nombre de la base de datos a la que me quiero conectar
 #Saludo inicial
 print("Soy Tony Ribeiro")                                                   #Autor
 print("Estoy programando con Python")                                       #Descripción
