@@ -3,6 +3,7 @@
 import sqlite3 as db                                                        #Importo la librería de sqlite
 import time                                                                 #Importo la librería de tratamiento de fechas
 import re                                                                   #Importo librería de expresiones regulares
+
 conexion = db.connect("comentarios.sqlite")                                 #Indico el nombre de la base de datos a la que me quiero conectar
 cursor = conexion.cursor()                                                  #Creo un cursor
 #Sobre el cursor ejecuto una petición para crear una tabla en la base de datos en el caso de que no exista anteriormente
@@ -46,8 +47,16 @@ print("Introduce el password")                                              #Le 
 password = input()                                                          #Entrada de usuario
 print("Introduce el email")                                                 #Le solicito al usuario su email
 email = input()                                                             #Entrada de email
-cursor.execute("INSERT INTO usuarios VALUES(NULL,'"+usuario+"','"+password+"','"+email+"');")    #Inserto el usuario en la base de datos
-conexion.commit()                                                           #Ejecuto la inserción
+
+expresion = re.compile(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b')  #Creo una expresión regular para un correo electrónico
+
+if re.fullmatch(expresion,email):                                           #Valido el correo electrónico del usuario
+    print("El email introducido es válido")                                 #Le digo que es correcto
+    cursor.execute("INSERT INTO usuarios VALUES(NULL,'"+usuario+"','"+password+"','"+email+"');")    #Inserto el usuario en la base de datos
+    conexion.commit()                                                       #Ejecuto la inserción
+else:                                                                       #Si no es válido
+    print("Tu email no es válido")                                          #Le digo por pantalla que no es válido
+
 
 for i in range(0,10):                                                       #Permito al usuario varios comentarios                              
     print("Escribe una recomendación que le harías a mi programa")          #Le pido un segundo comentario
