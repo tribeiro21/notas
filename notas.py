@@ -1,6 +1,7 @@
 #Programa Básico (c) 2023 Tony Ribeiro
 
 import sqlite3 as db                                                        #Importo la librería de sqlite
+import time                                                                 #Importo la librería de tratamiento de fechas
 
 conexion = db.connect("comentarios.sqlite")                                 #Indico el nombre de la base de datos a la que me quiero conectar
 cursor = conexion.cursor()                                                  #Creo un cursor
@@ -35,20 +36,20 @@ class Nota:                                                                 #Dec
         self.color = color                                                  #Propiedad color
         self.fecha = fecha                                                  #Propiedad fecha
 
-usuario = "Este es mi primer programa"                                         #Valor inicial de la variable
+usuario = "Este es mi primer programa"                                      #Valor inicial de la variable
 notas = []                                                                  #Creamos una lista vacía
 
 print("Introduce el usuario")                                               #Pido la evaluación del usuario
-usuario = input()                                                              #Introduce la puntuación
+usuario = input()                                                           #Introduce la puntuación
 print("El usuario es: "+usuario)                                            #Mensaje final
 
 for i in range(0,10):                                                       #Permito al usuario varios comentarios                              
-    print("Escribe una recomendación que le harías a mi programa")  #Le pido un segundo comentario
+    print("Escribe una recomendación que le harías a mi programa")          #Le pido un segundo comentario
     entrada = input()                                                       #Capturo la entrada del usuario
     print("Introduce el color del comentario")                              #Le pido el color al usuario
     color = input()                                                         #Capturo el color
-    print("Introduce la fecha del comentario")                              #Le pido la fecha al usuario
-    fecha = input()                                                         #Capturo la fecha
+    #print("Introduce la fecha del comentario")                             #Le pido la fecha al usuario
+    fecha = str(int(time.time()))                                           #Capturo la fecha
     if entrada == "finalizar":                                              #Si el usuario escribe "finalizar"
         break                                                               #Salfo del bucle
     else:                                                                   #En caso contrario
