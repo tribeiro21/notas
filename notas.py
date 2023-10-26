@@ -15,6 +15,8 @@ print("Escribe una recomendación que le harías a mi programa")          #Le pi
 notas.append(input())                                                   #Añado un comentario vacío
 print("Tu comentario es: "+notas[0])                                    #Muestro el comentario
 
-print("Escribe una segunda recomendación que le harías a mi programa")  #Le pido un segundo comentario
-notas.append(input())                                                   #Añadp el segundo comentario
-print("Tu comentario es: "+notas[1])                                    #Muestro el segundo comentario
+for i in range(0,10):
+    print("Escribe una segunda recomendación que le harías a mi programa")  #Le pido un segundo comentario
+    notas.append(input())                                                   #Añadp el segundo comentario
+    print("Tu comentario es: ")                                             #Muestro el segundo comentario
+    print(notas)
