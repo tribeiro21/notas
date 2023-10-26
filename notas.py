@@ -3,6 +3,18 @@
 import sqlite3 as db                                                        #Importo la librería de sqlite
 
 conexion = db.connect("comentarios.sqlite")                                 #Indico el nombre de la base de datos a la que me quiero conectar
+cursor = conexion.cursor()                                                  #Creo un cursor
+#Sobre el cursor ejecuto una petición para crear una tabla en la base de datos en el caso de que no exista anteriormente
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS 'comentarios'(
+        'id' INTEGER,
+        'texto' TEXT,
+        'color' TEXT,
+        'fecha' TEXT,
+        PRIMARY KEY('id' AUTOINCREMENT)
+    );
+""")
+
 #Saludo inicial
 print("Soy Tony Ribeiro")                                                   #Autor
 print("Estoy programando con Python")                                       #Descripción
