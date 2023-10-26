@@ -1,8 +1,11 @@
-print("Soy Tony Ribeiro")
-print("Estoy programando con Python")
+#Programa Básico (c) 2023 Tony Ribeiro
 
-nota = "Este es mi primer programa"
+#Saludo inicial
+print("Soy Tony Ribeiro")                                   #Autor
+print("Estoy programando con Python")                       #Descripción
 
-print("Evalúa la calidad de mi primer programa del 1 al 10")
-nota = input()
-print("La puntuación que me has dado es: "+nota)
+nota = "Este es mi primer programa"                         #Valor inicial de la variable
+
+print("Evalúa la calidad de mi primer programa del 1 al 10")#Pido la evaluación del usuario
+nota = input()                                              #Introduce la puntuación
+print("La puntuación que me has dado es: "+nota)            #Mensaje final
