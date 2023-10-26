@@ -2,7 +2,7 @@
 
 import sqlite3 as db                                                        #Importo la librería de sqlite
 import time                                                                 #Importo la librería de tratamiento de fechas
-
+import re                                                                   #Importo librería de expresiones regulares
 conexion = db.connect("comentarios.sqlite")                                 #Indico el nombre de la base de datos a la que me quiero conectar
 cursor = conexion.cursor()                                                  #Creo un cursor
 #Sobre el cursor ejecuto una petición para crear una tabla en la base de datos en el caso de que no exista anteriormente
@@ -42,6 +42,12 @@ notas = []                                                                  #Cre
 print("Introduce el usuario")                                               #Pido la evaluación del usuario
 usuario = input()                                                           #Introduce la puntuación
 print("El usuario es: "+usuario)                                            #Mensaje final
+print("Introduce el password")                                              #Le solicito al usuario el password
+password = input()                                                          #Entrada de usuario
+print("Introduce el email")                                                 #Le solicito al usuario su email
+email = input()                                                             #Entrada de email
+cursor.execute("INSERT INTO usuarios VALUES(NULL,'"+usuario+"','"+password+"','"+email+"');")    #Inserto el usuario en la base de datos
+conexion.commit()                                                           #Ejecuto la inserción
 
 for i in range(0,10):                                                       #Permito al usuario varios comentarios                              
     print("Escribe una recomendación que le harías a mi programa")          #Le pido un segundo comentario
